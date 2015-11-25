@@ -70,6 +70,7 @@ neutron_admin_tenant_name=services
 neutron_url=http://{{ctrlApiNetworkAddress}}:{{neutronUrlPort}}
 vif_plugging_timeout=300
 neutron_admin_username=neutron
+instances_path=/vm_snapshot
 
 [database]
 idle_timeout=3600
