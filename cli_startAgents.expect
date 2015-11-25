@@ -1,0 +1,12 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root\@10.52.150.150 -p 9022
+expect "root@ProVM:~#"
+send "cd /opt/adva/aos/\r"
+expect "root@ProVM:/opt/adva/aos#"
+send "./nova start\r"
+expect "root@ProVM:/opt/adva/aos#"
+send "./neutron start\r"
+expect "root@ProVM:/opt/adva/aos#"
+sleep 3
+send "logout\r"
+expect "closed."

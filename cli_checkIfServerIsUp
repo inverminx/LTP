@@ -1,0 +1,16 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{nidUser}}\@{{host}}
+expect "password:"
+send "{{nidPassword}}\r"
+expect "ADVA-->"
+
+send "configure system\r"
+expect "ADVA:system-->"
+send "Qdebug Udebug arriso123\r"
+expect " # "
+send "until ping -c1 169.254.0.2; do sleep 2; done\r"
+expect " # "
+send "logout\r"
+expect "ADVA:system-->"
+send logout\r"
+expect " # "

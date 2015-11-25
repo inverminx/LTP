@@ -1,0 +1,12 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{serverUser}}\@{{host}} -p {{serverPort}}
+#expect "password:"
+#send "{{serverPassword}}\r"
+expect "root@ProVM:~#"
+send "echo 'config_eth0=\"null\" vlans_eth0=\"2 3\" config_eth0_2=\"dhcp\" config_eth0_3=\"{{mgmtNetworkAddress}}\"' > /etc/conf.d/net\r"
+expect "root@ProVM:~#"
+send "/etc/init.d/net.eth0 restart\r"
+expect "root@ProVM:~#"
+sleep 3
+send "logout\r"
+expect "closed."

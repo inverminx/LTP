@@ -1,0 +1,14 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{nidUser}}\@{{host}}
+expect "password:"
+send "{{nidPassword}}\r"
+expect "ADVA-->"
+
+send "network-element ne-1\r"
+expect "ADVA-NE-1-->"
+send "configure nte nte114pro_vm-1-1-1\r"
+expect "ADVA-NE-1:nte114pro_vm-1-1-1-->"
+send "reboot cold\r"
+expect "Device will now reboot..."
+sleep 3
+

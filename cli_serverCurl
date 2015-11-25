@@ -1,0 +1,8 @@
+
+send "until curl -s -X GET -H 'Content-Type:application/json+nicknames' -H 'X-Auth-Token: your auth token'  http://127.0.0.1:8888/aos-api/mit/me/1/ |grep 'Galaxy far away' >>/dev/null 2>&1; do sleep 2; echo '==Waiting for AOS Applications startup==';done\r"
+expect " # "
+send "logout\r"
+expect "ADVA:system-->"
+send logout\r"
+expect " # "
+
