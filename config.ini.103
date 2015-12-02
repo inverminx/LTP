@@ -1,5 +1,5 @@
 {{isVerbose}} True
-{{host}} 10.52.150.150
+{{host}} 192.168.178.103
 {{ntpServer}} 10.52.100.3
 {{controllerExternalAddress}} 10.52.100.10
 {{mgmtNetworkAddress}} 192.168.0.161

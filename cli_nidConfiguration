@@ -4,6 +4,17 @@ expect "password:"
 send "{{nidPassword}}\r"
 expect "ADVA-->"
 
+send "configure system\r"
+expect "ADVA:system-->"
+send "ntp-client\r"
+expect "ADVA:system:ntp_client-->"
+send "primary-server ipv4 {{ntpServer}}\r"
+expect "ADVA:system:ntp_client-->"
+send "control enabled\r"
+send "home\r"
+expect "ADVA-->"
+
+
 send "ne ne-1\r"
 expect "ADVA-NE-1-->"
 send "configure nte nte114pro_vm-1-1-1\r"

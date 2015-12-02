@@ -71,6 +71,7 @@ neutron_url=http://{{ctrlApiNetworkAddress}}:{{neutronUrlPort}}
 vif_plugging_timeout=300
 neutron_admin_username=neutron
 instances_path=/vm_snapshot
+vcpu_pin_set=4-15
 
 [database]
 idle_timeout=3600

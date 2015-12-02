@@ -1,5 +1,5 @@
 set timeout 120
 spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{serverUser}}\@{{host}} -p {{serverPort}}
-expect "root@ProVM:~#"
+expect "root@"
 send "reboot\r"
-expect "closed."
+expect "root@"
