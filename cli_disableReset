@@ -1,0 +1,32 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{nidUser}}\@{{host}}
+expect "password:"
+send "{{nidPassword}}\r"
+expect "ADVA-->"
+
+send "configure system\r"
+expect "ADVA:system-->"
+sleep 1
+send "Qdebug Udebug arriso123\r"
+expect " # "
+sleep 1
+send "pkill debugTool\r"
+expect " # "
+sleep 1
+send "debugTool force\r"
+expect "root"
+sleep 1
+send "con saf 8\r"
+expect "1-1-08-saf"
+sleep 1
+send "provm\r"
+expect "1-1-08-saf.provm"
+sleep 1
+send "setRstRetry 4000000\r"
+expect "1-1-08-saf.provm"
+send "exit\r"
+expect " # "
+send "logout\r"
+expect "ADVA:system-->"
+send logout\r"
+expect " # "

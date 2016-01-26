@@ -14,7 +14,7 @@ ec2_private_dns_show_ip=True
 api_paste_config=/etc/nova/api-paste.ini
 volumes_path=/var/lib/nova/volumes
 enabled_apis=ec2,osapi_compute,metadata
-debug=True
+debug={{isDebug}}
 log_dir=/var/log/nova
 amqp_durable_queues=False
 vncserver_proxyclient_address={{mgmtNetworkAddress}}
@@ -70,8 +70,8 @@ neutron_admin_tenant_name=services
 neutron_url=http://{{ctrlApiNetworkAddress}}:{{neutronUrlPort}}
 vif_plugging_timeout=300
 neutron_admin_username=neutron
-instances_path=/vm_snapshot
-vcpu_pin_set=4-15
+instances_path=/mnt/vm_snapshot
+vcpu_pin_set={{cpuCoreSetting}}
 
 [database]
 idle_timeout=3600

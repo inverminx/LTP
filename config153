@@ -1,6 +1,5 @@
 {{isVerbose}} True
-{{isDebug}} False
-{{host}} 10.52.150.155
+{{host}} 10.52.150.154
 {{ntpServer}} 10.52.120.2
 {{controllerExternalAddress}} 10.52.244.4
 {{mgmtNetworkAddress}} 192.168.244.4
@@ -22,7 +21,7 @@
 {{nidUser}} "root"
 {{serverUser}} "root"
 {{nidPassword}} "ChgMeNOW"
-{{serverPassword}} 
+{{serverPassword}}
 {{vimVlan}} 244
 {{vimTunnelPort}} "network-1-1-1-1"
 {{vimTunnelCIR}} 500000000

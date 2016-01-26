@@ -53,10 +53,45 @@ function waitForServer {
 	until nc -vzw 2 $host $serverPort >> $logFile 2>&1; do sleep 2; info "waiting for server $host to be accessible on port $serverPort"; done
 }
 function waitForAosApps {
-until curl -s -X GET -H 'Content-Type:application/json+nicknames' -H 'X-Auth-Token: your auth token'  http://${host}:${aosAppsPort}/aos-api/mit/me/1/ |grep 'Galaxy far away' >>/dev/null 2>&1; do sleep 2; info 'Waiting for AOS Applications startup';done
+#Modified for AOS0.9
+until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type:application/json+nicknames' -H 'X-Auth-Token: your auth token'  https://${host}:${aosAppsPort}/aos-api/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
 }
 
+function getToken {
+# This section is related to AOS 0.9 only !
+
+token=$(curl -k --silent -i -X POST -H "Content-Type:application/json+nicknames" -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "https://${host}:${aosAppsPort}/aos-api?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
+if [[ "$token" == "" ]];then
+	info "Error getting token, quitting..."
+	exit 1
+fi
+
+
+}
+
+
+function createPhysNets {
+# This section is related to AOS 0.9 only !
+
+
+baseURI="https://${host}:${aosAppsPort}/aos-api"
+header="Content-Type:application/json+nicknames"
+
+
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "nid-net1", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,1/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/1
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "nid-net2", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,2/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/2
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "nid-acc3", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/3
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "nid-acc4", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/4
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "nid-acc5", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,5/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/5
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "nid-acc6", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,6/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/6
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "phy-local", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/7
+
+}
+
+
+
 function configureRestAPI {
+
 curlCommand=$1
 exitCode=$(curl -s -o /dev/null -w "%{http_code}" -X  $curlCommand -H 'Content-Type:application/json+nicknames' -H "X-Auth-Token: your auth token" -d '{"id": "nid-acc3", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' http://${host}:${aosAppsPort}/aos-api/mit/me/1/vpnet/1); echo -e "vpnet 1 $curlCommand command respone Code [$exitCode]"
 exitCode=$(curl -s -o /dev/null -w "%{http_code}" -X  $curlCommand -H 'Content-Type:application/json+nicknames' -H "X-Auth-Token: your auth token" -d '{"id": "nid-acc4", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' http://${host}:${aosAppsPort}/aos-api/mit/me/1/vpnet/2); echo -e "vpnet 2 $curlCommand command respone Code [$exitCode]"
@@ -97,6 +132,13 @@ if [ ! -f "$configFile" ];then
 	exit 1
 fi
 
+if [[ $2 == "skip" ]]; then
+	skip="TRUE"
+else
+	skip="FALSE"
+fi
+
+
 host=$(cat ${configFile} |grep "{{host}}"|awk {'print $2'})
 serverPort=$(cat ${configFile} |grep "{{serverPort}}"|awk {'print $2'})
 aosAppsPort=$(cat ${configFile} |grep "{{aosAppsPort}}"|awk {'print $2'})
@@ -109,8 +151,12 @@ waitForNID
 #waitForServer
 #templateAndRun cli_restartServer
 info "Applying default-db on NID"
-templateAndRun cli_defaultDB
 
+if [[ "$skip" == "TRUE" ]]; then
+	 info "Skipping default DB on the NID..."
+else 
+	templateAndRun cli_defaultDB
+fi
 info "Waiting for NID startup..."
 waitForNID
 info "Seding Hardware reboot for server"
@@ -133,12 +179,16 @@ info "waiting for AOS Application startup..."
 waitForAosApps
 info "AOS Apps are online!"
 info "Configuration via rest-api [CREATE]..."
-configureRestAPI POST
+#configureRestAPI POST
+info "Getting Token for rest-api"
+getToken
+info "Creating physical networks..."
+createPhysNets
 template nova.conf.template
 template neutron.conf.template
 template ml2_conf.ini.template
 copyConfigFiles
-templateAndRun cli_startAgents
+templateAndRun cli_startAgents_0.9
 info "Clearing .expect files ..."
 rm -f *.expect
 info "*************************************"

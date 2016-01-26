@@ -7,6 +7,6 @@ expect "ADVA-->"
 send "admin database\r"
 expect "ADVA:database-->"
 send "system-defaults db restore yes\r"
-expect "closed"
-sleep 3
+expect "ADVA:database-->"
+sleep 10
 

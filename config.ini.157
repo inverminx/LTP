@@ -1,9 +1,9 @@
 {{isVerbose}} True
 {{isDebug}} False
-{{host}} 10.52.150.155
+{{host}} 10.52.150.157
 {{ntpServer}} 10.52.120.2
 {{controllerExternalAddress}} 10.52.244.4
-{{mgmtNetworkAddress}} 192.168.244.4
+{{mgmtNetworkAddress}} 192.168.244.157
 {{ctrlMgmtNetworkAddress}} 192.168.244.5
 {{ctrlApiNetworkAddress}} 192.168.244.5
 {{rabbitHostPort}} 192.168.244.5:5673
@@ -27,3 +27,5 @@
 {{vimTunnelPort}} "network-1-1-1-1"
 {{vimTunnelCIR}} 500000000
 {{vimTunnelEIR}} 0
+{{cpuCoreSetting}} 4-15
+
