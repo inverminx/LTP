@@ -1,0 +1,21 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root\@192.168.178.137
+expect "password:"
+send "ChgMeNOW\r"
+expect "ADVA-->"
+
+send "configure system\r"
+expect "ADVA:system-->"
+sleep 1
+send "Qdebug Udebug arriso123\r"
+expect " # "
+sleep 1
+send "board_dbg cpld write 0x30 0xa0\r"
+expect " # "
+sleep 1
+send "exit\r"
+sleep 2
+expect "ADVA:system--"
+sleep 3
+send "logout\r"
+expect "ADVA:system-->"
