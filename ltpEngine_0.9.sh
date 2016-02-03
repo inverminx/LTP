@@ -121,6 +121,17 @@ scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort m
 info "Done."
 }
 
+function copyAgentFiles {
+
+info "Copying nova and neutron start scripts to server..."
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort neutron-adva-agent ${host}:/opt/adva/aos/bin
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort nova-adva-compute ${host}:/opt/adva/aos/bin
+
+info "Done."
+}
+
+
+
 logFile="ltp.log"
 if [[ $1 == "" ]];then 
 	configFile=config.ini
@@ -188,6 +199,7 @@ template nova.conf.template
 template neutron.conf.template
 template ml2_conf.ini.template
 copyConfigFiles
+copyAgentFiles
 templateAndRun cli_startAgents_0.9
 info "Clearing .expect files ..."
 rm -f *.expect

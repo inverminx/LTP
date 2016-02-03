@@ -1,0 +1,163 @@
+#!/bin/bash
+
+RETVAL=0
+
+# Harden the system with permissions
+#  For now the nova must use 0022
+#umask 077
+
+DEBUG=0
+
+# Environment
+AOS_HOME=/opt/adva/aos/
+
+PROGRAM_NAME=Nova-Adva-Compute
+PROGRAM="nova-compute"
+STARTUP_LOG_FILE=/var/log/nova/startup.log
+PID_FILE=/var/run/nova-adva-compute
+
+encapsulate() {
+	ulimit -c unlimited
+	echo "/tmp/core.%e.%p" > /proc/sys/kernel/core_pattern
+}
+
+is_up() {
+	local ID=$1
+	
+	kill -0 $ID &> /dev/null
+	
+	RET=$?
+	
+	return $RET
+}
+
+
+start() {
+	
+	if [ -e "$PID_FILE" ]; then
+		PID=$(pgrep -F $PID_FILE)
+		if [ ! -z "$PID" ]; then
+			
+			echo "Already running..."
+			return 0;
+		fi
+	fi
+	
+	encapsulate
+	
+	# Empty startup log file
+	:> $STARTUP_LOG_FILE
+	
+	modprobe nbd &>> $STARTUP_LOG_FILE
+	
+	LD_LIBRARY_PATH=$AOS_HOME/lib \
+	LD_PRELOAD=$AOS_HOME/lib/libAosCoreVmmLibvirtWrapper.so \
+	$PROGRAM &>> $STARTUP_LOG_FILE &
+	
+	RET=$?
+	PID=$!
+	if [ "0" -ne "$RET" ]; then
+		(( $DEBUG )) && echo "No processes for \"$PROGRAM_NAME\" could start"
+		return 1;
+	fi
+	
+	if [ -z "$PID" ]; then
+		(( $DEBUG )) && echo "No PID for processes \"$PROGRAM_NAME\""
+		return 1;
+	fi
+	
+	echo -ne $PID > $PID_FILE
+}
+
+stop() {
+	if [ ! -e "$PID_FILE" ]; then
+		echo "Service is not running..."
+		return 0;
+	fi
+	
+	PID=$(pgrep -F $PID_FILE 2> /dev/null)
+	if [ "$?" == "1" ] ; then
+		echo "PID file is invalid"
+		return 0;
+	fi
+	
+	(( $DEBUG )) && echo "$PID"
+	if [ ! -z "$PID" ]; then
+		for id in $PID; do
+			local TRIES=3
+			while is_up $id; [ $? -eq 0 -a $TRIES -ne 0 ]; do
+				(( $DEBUG )) && echo kill -SIGINT $id
+				kill -SIGINT $id
+				
+				(( $DEBUG )) && echo "Wait for process to die"
+				TRIES=$(($TRIES - 1))
+				(( $DEBUG )) && echo "Tries left $TRIES"
+				
+				[ $TRIES -ne 0 ] && sleep 1;
+			done
+			
+			(( $DEBUG )) && echo "Tries left $TRIES"
+			[ $TRIES -ne 0 ] && KILLED=1
+			
+			local TRIES=3
+			while is_up $id; [ $? -eq 0 -a $TRIES -ne 0 ]; do
+				(( $DEBUG )) && echo kill -SIGTERM $id
+				kill -SIGTERM $id
+				
+				(( $DEBUG )) && echo "Wait for process to die"
+				TRIES=$(($TRIES - 1))
+				(( $DEBUG )) && echo "Tries left $TRIES"
+				
+				[ $TRIES -ne 0 ] && sleep 1;
+			done
+			
+			(( $DEBUG )) && echo "Tries left $TRIES"
+			[ $TRIES -ne 0 ] && KILLED=1
+
+			local TRIES=3
+			while is_up $id; [ $? -eq 0 -a $TRIES -ne 0 ]; do
+				(( $DEBUG )) && echo kill -SIGKILL $id
+				kill -SIGKILL $id
+				
+				(( $DEBUG )) && echo "Wait for process to die"
+				TRIES=$(($TRIES - 1))
+				(( $DEBUG )) && echo "Tries left $TRIES"
+				
+				[ $TRIES -ne 0 ] && sleep 1;
+			done
+			
+			(( $DEBUG )) && echo "Tries left $TRIES"
+			[ $TRIES -ne 0 ] && KILLED=1
+		done
+		
+		(( $DEBUG )) && echo "After killing..." && ps auxf
+		(( $KILLED )) && rm "$PID_FILE"
+	fi
+}
+
+restart() {
+	stop
+	sleep 1
+	start
+
+}
+
+
+ACTION=$1
+shift
+
+case $ACTION in
+	start)
+		start
+	;;
+	stop)
+		stop
+	;;
+	restart|reload)
+		restart
+	;;
+	*)
+		echo "Usage $0 (start|stop|restart|reload)"
+	;;
+esac
+
