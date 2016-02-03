@@ -1,4 +1,12 @@
 #!/bin/bash
+startTime=$(date +%s)
+
+function getTime {
+info "Script run-time = [$(($(date +%s)-$startTime))] sec"
+
+
+}
+
 
 function isExpectExists {
 
@@ -6,6 +14,7 @@ which expect
 status=$?
 if [[ "$status" != "0" ]]; then
 	echo "Expect is not installed! quitting..."
+	getTime
 	exit 1
 fi
 
@@ -63,6 +72,7 @@ function getToken {
 token=$(curl -k --silent -i -X POST -H "Content-Type:application/json+nicknames" -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "https://${host}:${aosAppsPort}/aos-api?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
 if [[ "$token" == "" ]];then
 	info "Error getting token, quitting..."
+	getTime
 	exit 1
 fi
 
@@ -140,6 +150,7 @@ else
 fi
 if [ ! -f "$configFile" ];then
 	echo "Configuration file $configFile does not exist!"
+	getTime
 	exit 1
 fi
 
@@ -203,6 +214,7 @@ copyAgentFiles
 templateAndRun cli_startAgents_0.9
 info "Clearing .expect files ..."
 rm -f *.expect
+getTime
 info "*************************************"
 info "              Finished!"
 info "*************************************"
