@@ -70,7 +70,7 @@ neutron_admin_tenant_name=services
 neutron_url=http://{{ctrlApiNetworkAddress}}:{{neutronUrlPort}}
 vif_plugging_timeout=300
 neutron_admin_username=neutron
-instances_path=/mnt/vm_snapshot
+instances_path={{instancesPath}}
 vcpu_pin_set={{cpuCoreSetting}}
 
 [database]

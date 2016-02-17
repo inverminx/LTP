@@ -10,10 +10,6 @@ info "Script run-time = [$(($(date +%s)-$startTime))] sec"
 function getAttr {
 key=$1
 value=$(cat ${configFile} |grep "{{$key}}"|awk {'print $2'})
-if [[ "$value" == "" ]];then
-	info "Error extracting value for Key $key from config file $configFile, quitting !!"
-	exit 1
-fi
 echo $value
 }
 
@@ -150,16 +146,6 @@ scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort n
 info "Done."
 }
 
-function copyAosStartScripts {
-
-info "Copying AOS and neutron start scripts to server..."
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort start.sh ${host}:/opt/adva/aos
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort stop.sh ${host}:/opt/adva/aos
-
-info "Done."
-}
-
-
 
 
 logFile="ltp.log"
@@ -186,12 +172,12 @@ ntpServer=$(getAttr ntpServer)
 vimVlan=$(getAttr vimVlan)
 serverPort=$(getAttr serverPort)
 aosAppsPort=$(getAttr aosAppsPort)
-nidNet1=$(getAttr physicalNet1Network)
-nidNet2=$(getAttr physicalNet2Network)
-nidAcc3=$(getAttr physicalAcc3Network)
-nidAcc4=$(getAttr physicalAcc4Network)
-nidAcc5=$(getAttr physicalAcc5Network)
-nidAcc6=$(getAttr physicalAcc6Network)
+nidNet1=$(getAttr nidNet1)
+nidNet2=$(getAttr nidNet2)
+nidAcc3=$(getAttr nidAcc3)
+nidAcc4=$(getAttr nidAcc4)
+nidAcc5=$(getAttr nidAcc5)
+nidAcc6=$(getAttr nidAcc6)
 ntpServer=$(getAttr ntpServer)
 
 info "Starting Low Touch Provisioning for proNID(vm)"
@@ -211,8 +197,8 @@ else
 fi
 info "Waiting for NID startup..."
 waitForNID
-#info "Seding Hardware reboot for server"
-#templateAndRun cli_serverHardwareReset
+info "Seding Hardware reboot for server"
+templateAndRun cli_serverHardwareReset
 info "Test SSH connectivity for server..."
 waitForServer
 
@@ -224,8 +210,6 @@ waitForServer
 info "Server is ready!"
 info "Starting Server interfaces configuration..."
 templateAndRun cli_serverNetworkInterfacesConfiguration
-info "Copying start scripts..."
-copyAosStartScripts
 info "Continue server configuration ...."
 templateAndRun cli_serverConfiguration
 info "Server configuration completed."

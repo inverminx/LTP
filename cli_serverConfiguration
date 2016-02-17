@@ -9,6 +9,7 @@ expect "root@"
 send "cd /opt/adva/aos/\r"
 expect "root@"
 #send ">/var/tmp/aosAppsStartup.log;./start.sh |tee /var/tmp/aosAppsStartup.log 2>&1\r"
+sleep 10
 send "./start.sh\r"
 expect "NfvFlowManager\:\:ready"
 sleep 3

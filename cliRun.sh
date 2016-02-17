@@ -7,7 +7,7 @@ function template {
 	cp -r $templateFile $targetFile
 	while read configLine; do
 		key=$(echo "$configLine"|awk {'print $1'})
-		value=$(echo "$configLine"|awk {'print $2'}|sed -r s/\"//g)
+		value=$(echo "$configLine"|awk {'print $2'}|sed -r s/\"//g|sed -e 's/[\/&]/\\&/g')
 		sed -i "s/$key/$value/g" $targetFile
 	done<config.ini
 }
