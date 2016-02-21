@@ -113,8 +113,8 @@ templateAndRun cli_defaultDB
 
 info "Waiting for NID startup..."
 waitForNID
-info "Seding Hardware reboot for server"
-templateAndRun cli_serverHardwareReset
+#info "Seding Hardware reboot for server"
+#templateAndRun cli_serverHardwareReset
 info "Test SSH connectivity for server..."
 waitForServer
 

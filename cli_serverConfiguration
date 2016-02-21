@@ -4,8 +4,8 @@ spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{serverUs
 #send "{{serverPassword}}\r"
 expect "root@"
 
-send "modprobe nbd\r"
-expect "root@"
+#send "modprobe nbd\r"
+#expect "root@"
 send "cd /opt/adva/aos/\r"
 expect "root@"
 #send ">/var/tmp/aosAppsStartup.log;./start.sh |tee /var/tmp/aosAppsStartup.log 2>&1\r"
