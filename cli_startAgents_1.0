@@ -1,0 +1,14 @@
+set timeout 120
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {{serverUser}}\@{{host}} -p {{serverPort}}
+expect "root@"
+send "pkill ntpd\r"
+expect "root@"
+send "cd /opt/adva/aos/bin\r"
+expect "root@"
+send "./nova-adva-compute start\r"
+expect "root@"
+send "./neutron-adva-agent  start\r"
+expect "root@"
+sleep 3
+send "logout\r"
+expect "closed."

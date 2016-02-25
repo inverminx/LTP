@@ -1,5 +1,5 @@
 set timeout 120
-spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root\@192.168.178.137
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root\@192.168.178.109
 expect "password:"
 send "ChgMeNOW\r"
 expect "ADVA-->"
