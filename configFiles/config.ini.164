@@ -1,9 +1,9 @@
 {{isVerbose}} True
 {{isDebug}} True
-{{host}} 10.52.150.162
+{{host}} 10.52.150.164
 {{ntpServer}} 10.52.120.2
 {{controllerExternalAddress}} 10.52.248.4
-{{mgmtNetworkAddress}} 192.168.14.162
+{{mgmtNetworkAddress}} 192.168.14.164
 {{ctrlMgmtNetworkAddress}} 192.168.14.4
 {{ctrlApiNetworkAddress}} 192.168.14.4
 {{rabbitHostPort}} 192.168.14.4:5673
@@ -27,12 +27,5 @@
 {{vimTunnelPort}} "network-1-1-1-1"
 {{vimTunnelCIR}} 500000000
 {{vimTunnelEIR}} 0
-{{cpuCoreSetting}} 4-7
-{{instancesPath}} "/vm_snapshot"
-{{physicalNet1Network}} nid-net1
-{{physicalAcc3Network}} nid-acc3
-{{physicalNet2Network}} nid-net2
-{{physicalAcc4Network}} nid-acc4
-{{physicalAcc5Network}} nid-acc5
-{{physicalAcc6Network}} nid-acc6
-{{aosVersion}} 0.8
+{{cpuCoreSetting}} 4-15
+

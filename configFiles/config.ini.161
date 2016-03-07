@@ -1,9 +1,9 @@
 {{isVerbose}} True
 {{isDebug}} True
-{{host}} 192.168.178.109
+{{host}} 10.52.150.161
 {{ntpServer}} 10.52.120.2
 {{controllerExternalAddress}} 10.52.242.4
-{{mgmtNetworkAddress}} 192.168.242.109
+{{mgmtNetworkAddress}} 192.168.242.161
 {{ctrlMgmtNetworkAddress}} 192.168.242.4
 {{ctrlApiNetworkAddress}} 192.168.242.4
 {{rabbitHostPort}} 192.168.242.4:5673
