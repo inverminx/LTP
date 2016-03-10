@@ -100,19 +100,19 @@ case $aosVersion in
 0.8)
 	baseURI="http://${host}:${aosAppsPort}/aos-api"
 	header="Content-Type:application/json+nicknames"
-	until curl -s -X GET -H $header -H 'X-Auth-Token: your auth token'  http://${host}:${aosAppsPort}/aos-api/mit/me/1/ |grep 'Galaxy far away' >>/dev/null 2>&1; do sleep 2; info 'Waiting for AOS Applications startup';done
+	until curl -s -X GET -H "$header" -H 'X-Auth-Token: your auth token'  http://${host}:${aosAppsPort}/aos-api/mit/me/1/ |grep 'Galaxy far away' >>/dev/null 2>&1; do sleep 2; info 'Waiting for AOS Applications startup';done
 	;;
 0.9)
 	baseURI="https://${host}:${aosAppsPort}/aos-api"
 	header="Content-Type:application/json+nicknames"
-	token=$(curl -k --silent -i -X POST -H $header -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "${baseURI}?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
-	until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H $header -H 'X-Auth-Token: $token'  ${baseURI}/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
+	token=$(curl -k --silent -i -X POST -H "$header" -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "${baseURI}?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
+	until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H "$header" -H 'X-Auth-Token: $token'  ${baseURI}/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
   ;;
 1.0)
 	baseURI="https://${host}:${aosAppsPort}/aos-api"
 	header="Content-Type:application/json; ext=nn"
-	token=$(curl -k --silent -i -X POST -H $header -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "${baseURI}?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
-	until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H $header -H 'X-Auth-Token: $token'  ${baseURI}/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
+	token=$(curl -k --silent -i -X POST -H "$header" -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "${baseURI}?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
+	until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H "$header" -H 'X-Auth-Token: $token'  ${baseURI}/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
 	;;
 esac
 
@@ -122,13 +122,13 @@ esac
 
 
 
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "'${nidNet1}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,1/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/1
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "'${nidNet2}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,2/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/2
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc3}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/3
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc4}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/4
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc5}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,5/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/5
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc6}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,6/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/6
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H $header -H "X-Auth-Token: $token" -d '{"id": "phy-local", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/7
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidNet1}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,1/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/1
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidNet2}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,2/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/2
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc3}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/3
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc4}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/4
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc5}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,5/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/5
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc6}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,6/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/6
+curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "phy-local", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/7
 
 }
 
@@ -206,7 +206,7 @@ else
 	skip="FALSE"
 fi
 
-## Extracting keys from configuration file ##
+## Extracting keys from from configuration file ##
 
 key=aosVersion;aosVersion=$(getAttr $key);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=host;host=$(getAttr $key);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
