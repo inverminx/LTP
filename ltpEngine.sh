@@ -167,7 +167,7 @@ function copyAgentFiles {
 
 info "Copying nova and neutron start scripts to server..."
 scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort neutron-adva-agent ${host}:/opt/adva/aos/bin
-scp -rp o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort nova-adva-compute ${host}:/opt/adva/aos/bin
+scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort nova-adva-compute ${host}:/opt/adva/aos/bin
 
 info "Done."
 }
@@ -175,13 +175,13 @@ info "Done."
 function copyAosStartScripts {
 
 info "Copying AOS and neutron start scripts to server..."
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort start.sh ${host}:/opt/adva/aos
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort stop.sh ${host}:/opt/adva/aos
+scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort start.sh ${host}:/opt/adva/aos
+scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort stop.sh ${host}:/opt/adva/aos
 info "Done."
 }
 
 function copyNtpConfigFile {
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort ntp.conf ${host}:/var/lib/ntp/ntp.conf
+scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPort ntp.conf ${host}:/var/lib/ntp/ntp.conf
 info "Done."
 }
 
