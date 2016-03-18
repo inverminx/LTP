@@ -56,7 +56,7 @@ function template {
 }
 
 function info {
-	echo "$(date +'%d-%m-%Y %H:%M:%S')|INFO|$$|$1" | tee $logFile
+	echo "$(date +'%d-%m-%Y %H:%M:%S')|INFO|$$|$1" | tee -a $logFile
 }	
 
 function runScript {
