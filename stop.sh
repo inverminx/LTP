@@ -33,11 +33,16 @@ if [ "x${PYTHON}" != "x" ]; then
 fi
 
 /opt/adva/aos/bin/nidc.sh stop
-pkill nidc
+pkill -9 nidc
+
 # kill ntpd
 #NTPD=$(pgrep 'ntpd')
 #if [ "x${NTPD}" != "x" ]; then
 #  kill ${NTPD}
 #fi
+
+rm -rf /tmp/aos*
+rm -rf /tmp/fd*
+pkill ovs*
 
 exit 0

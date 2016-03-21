@@ -1,1 +1,407 @@
-07-03-2016 09:58:24|INFO|18299|*************************************
+20-03-2016 16:43:16|INFO|17331|Starting Low Touch Provisioning for proNID(vm)
+20-03-2016 16:43:16|INFO|17331|Testing connection to NID on [10.52.150.164]...
+Connection to 10.52.150.164 22 port [tcp/ssh] succeeded!
+20-03-2016 16:43:16|INFO|17331|Applying default-db on NID
+20-03-2016 16:43:16|INFO|17331|Skipping default DB on the NID...
+20-03-2016 16:43:16|INFO|17331|Rebooting server...
+20-03-2016 16:43:16|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:43:16|INFO|17331|Templating cli_serverHardwareReset
+20-03-2016 16:43:16|INFO|17331|Found 3 parameters on cli_serverHardwareReset
+20-03-2016 16:43:17|INFO|17331|3 parameters has been changed successfully
+20-03-2016 16:43:25|INFO|17331|Waiting for NID startup...
+Connection to 10.52.150.164 22 port [tcp/ssh] succeeded!
+20-03-2016 16:43:25|INFO|17331|Test SSH connectivity for server...
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:29|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:33|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:37|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:41|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:45|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:49|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:53|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:43:57|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:01|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:05|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: No route to host
+20-03-2016 16:44:09|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:13|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:17|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:21|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: No route to host
+20-03-2016 16:44:25|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:29|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:33|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:37|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: No route to host
+20-03-2016 16:44:41|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:45|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:49|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:53|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:44:57|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:01|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:05|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:09|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:13|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:17|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:21|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:25|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:29|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:33|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:37|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:41|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:45|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:49|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:53|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:45:58|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:02|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:06|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:10|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:14|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:18|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:22|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:26|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:30|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:34|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+20-03-2016 16:46:38|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: Connection refused
+20-03-2016 16:46:42|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: Connection refused
+20-03-2016 16:46:44|INFO|17331|waiting for server 10.52.150.164 to be accessible on port 9022
+Connection to 10.52.150.164 9022 port [tcp/*] succeeded!
+20-03-2016 16:46:44|INFO|17331|Starting NID configuration...
+20-03-2016 16:46:44|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:46:44|INFO|17331|Templating cli_nidConfiguration
+20-03-2016 16:46:44|INFO|17331|Found 9 parameters on cli_nidConfiguration
+20-03-2016 16:46:44|INFO|17331|9 parameters has been changed successfully
+20-03-2016 16:46:48|INFO|17331|NID Configuration completed.
+20-03-2016 16:46:48|INFO|17331|Checking of server is ready to accept configuration...
+Connection to 10.52.150.164 9022 port [tcp/*] succeeded!
+20-03-2016 16:46:48|INFO|17331|Server is ready!
+20-03-2016 16:46:48|INFO|17331|Starting Server interfaces configuration...
+20-03-2016 16:46:48|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:46:48|INFO|17331|Templating cli_serverNetworkInterfacesConfiguration
+20-03-2016 16:46:48|INFO|17331|Found 8 parameters on cli_serverNetworkInterfacesConfiguration
+20-03-2016 16:46:48|INFO|17331|8 parameters has been changed successfully
+20-03-2016 16:46:57|INFO|17331|Copying start scripts...
+20-03-2016 16:46:57|INFO|17331|Copying AOS and neutron start scripts to server...
+20-03-2016 16:46:58|INFO|17331|Done.
+20-03-2016 16:46:58|INFO|17331|Continue server configuration ....
+20-03-2016 16:46:58|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:46:58|INFO|17331|Templating cli_serverConfiguration
+20-03-2016 16:46:58|INFO|17331|Found 4 parameters on cli_serverConfiguration
+20-03-2016 16:47:00|INFO|17331|4 parameters has been changed successfully
+20-03-2016 16:48:38|INFO|17331|Server configuration completed.
+20-03-2016 16:48:38|INFO|17331|Creating physical networks...
+20-03-2016 16:48:38|INFO|17331|Creating PhysNets - AOS version 1.0 mode
+20-03-2016 16:48:39|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:48:39|INFO|17331|Templating nova.conf.template
+20-03-2016 16:48:39|INFO|17331|Found 21 parameters on nova.conf.template
+20-03-2016 16:48:40|INFO|17331|20 parameters has been changed successfully
+20-03-2016 16:48:40|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:48:40|INFO|17331|Templating neutron.conf.template
+20-03-2016 16:48:40|INFO|17331|Found 4 parameters on neutron.conf.template
+20-03-2016 16:48:40|INFO|17331|4 parameters has been changed successfully
+20-03-2016 16:48:40|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:48:40|INFO|17331|Templating ml2_conf.ini.template
+20-03-2016 16:48:40|INFO|17331|Found 0 parameters on ml2_conf.ini.template
+20-03-2016 16:48:40|INFO|17331|Nothing to change
+20-03-2016 16:48:40|INFO|17331|Copying templated configuration files to server...
+20-03-2016 16:48:41|INFO|17331|Done.
+20-03-2016 16:48:41|INFO|17331|Copying nova and neutron start scripts to server...
+20-03-2016 16:48:41|INFO|17331|Done.
+20-03-2016 16:48:42|INFO|17331|Done.
+20-03-2016 16:48:42|INFO|17331|Removing empty lines from config file [.config.ini] ...
+20-03-2016 16:48:42|INFO|17331|Templating cli_startAgents
+20-03-2016 16:48:42|INFO|17331|Found 3 parameters on cli_startAgents
+20-03-2016 16:48:42|INFO|17331|3 parameters has been changed successfully
+20-03-2016 16:48:45|INFO|17331|Clearing .expect files ...
+20-03-2016 16:48:45|INFO|17331|Script run-time = [329] sec
+20-03-2016 16:48:45|INFO|17331|*************************************
+20-03-2016 16:48:45|INFO|17331|              Finished!
+20-03-2016 16:48:45|INFO|17331|*************************************
+21-03-2016 08:13:54|INFO|3072|Starting Low Touch Provisioning for proNID(vm)
+21-03-2016 08:13:54|INFO|3072|Testing connection to NID on [10.52.150.162]...
+Connection to 10.52.150.162 22 port [tcp/ssh] succeeded!
+21-03-2016 08:13:54|INFO|3072|Applying default-db on NID
+21-03-2016 08:13:54|INFO|3072|Skipping default DB on the NID...
+21-03-2016 08:13:54|INFO|3072|Rebooting server...
+21-03-2016 08:13:54|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:13:54|INFO|3072|Templating cli_serverHardwareReset
+21-03-2016 08:13:54|INFO|3072|Found 3 parameters on cli_serverHardwareReset
+21-03-2016 08:13:54|INFO|3072|3 parameters has been changed successfully
+21-03-2016 08:14:03|INFO|3072|Waiting for NID startup...
+Connection to 10.52.150.162 22 port [tcp/ssh] succeeded!
+21-03-2016 08:14:03|INFO|3072|Test SSH connectivity for server...
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:07|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:11|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:15|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:19|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:23|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:27|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:31|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:14:35|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+nc: connect to 10.52.150.162 port 9022 (tcp) failed: Connection refused
+21-03-2016 08:14:38|INFO|3072|waiting for server 10.52.150.162 to be accessible on port 9022
+Connection to 10.52.150.162 9022 port [tcp/*] succeeded!
+21-03-2016 08:14:38|INFO|3072|Starting NID configuration...
+21-03-2016 08:14:38|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:14:38|INFO|3072|Templating cli_nidConfiguration
+21-03-2016 08:14:38|INFO|3072|Found 9 parameters on cli_nidConfiguration
+21-03-2016 08:14:39|INFO|3072|9 parameters has been changed successfully
+21-03-2016 08:14:43|INFO|3072|NID Configuration completed.
+21-03-2016 08:14:43|INFO|3072|Checking of server is ready to accept configuration...
+Connection to 10.52.150.162 9022 port [tcp/*] succeeded!
+21-03-2016 08:14:43|INFO|3072|Server is ready!
+21-03-2016 08:14:43|INFO|3072|Starting Server interfaces configuration...
+21-03-2016 08:14:43|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:14:43|INFO|3072|Templating cli_serverNetworkInterfacesConfiguration
+21-03-2016 08:14:43|INFO|3072|Found 8 parameters on cli_serverNetworkInterfacesConfiguration
+21-03-2016 08:14:44|INFO|3072|8 parameters has been changed successfully
+21-03-2016 08:14:52|INFO|3072|Copying start scripts...
+21-03-2016 08:14:52|INFO|3072|Copying AOS and neutron start scripts to server...
+21-03-2016 08:14:52|INFO|3072|Done.
+21-03-2016 08:14:52|INFO|3072|Continue server configuration ....
+21-03-2016 08:14:52|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:14:52|INFO|3072|Templating cli_serverConfiguration
+21-03-2016 08:14:52|INFO|3072|Found 4 parameters on cli_serverConfiguration
+21-03-2016 08:14:53|INFO|3072|4 parameters has been changed successfully
+21-03-2016 08:15:20|INFO|3072|Server configuration completed.
+21-03-2016 08:15:20|INFO|3072|Creating physical networks...
+21-03-2016 08:15:20|INFO|3072|Creating PhysNets - AOS version 0.8 mode
+21-03-2016 08:15:22|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:15:22|INFO|3072|Templating nova.conf.template
+21-03-2016 08:15:22|INFO|3072|Found 21 parameters on nova.conf.template
+21-03-2016 08:15:23|INFO|3072|20 parameters has been changed successfully
+21-03-2016 08:15:23|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:15:23|INFO|3072|Templating neutron.conf.template
+21-03-2016 08:15:23|INFO|3072|Found 4 parameters on neutron.conf.template
+21-03-2016 08:15:25|INFO|3072|4 parameters has been changed successfully
+21-03-2016 08:15:25|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:15:25|INFO|3072|Templating ml2_conf.ini.template
+21-03-2016 08:15:25|INFO|3072|Found 0 parameters on ml2_conf.ini.template
+21-03-2016 08:15:25|INFO|3072|Nothing to change
+21-03-2016 08:15:25|INFO|3072|Copying templated configuration files to server...
+21-03-2016 08:15:25|INFO|3072|Done.
+21-03-2016 08:15:25|INFO|3072|Copying nova and neutron start scripts to server...
+21-03-2016 08:15:26|INFO|3072|Done.
+21-03-2016 08:15:26|INFO|3072|Done.
+21-03-2016 08:15:26|INFO|3072|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:15:26|INFO|3072|Templating cli_startAgents
+21-03-2016 08:15:26|INFO|3072|Found 3 parameters on cli_startAgents
+21-03-2016 08:15:26|INFO|3072|3 parameters has been changed successfully
+21-03-2016 08:15:29|INFO|3072|Clearing .expect files ...
+21-03-2016 08:15:29|INFO|3072|Script run-time = [96] sec
+21-03-2016 08:15:29|INFO|3072|*************************************
+21-03-2016 08:15:29|INFO|3072|              Finished!
+21-03-2016 08:15:29|INFO|3072|*************************************
+21-03-2016 08:17:17|INFO|20141|Starting Low Touch Provisioning for proNID(vm)
+21-03-2016 08:17:17|INFO|20141|Testing connection to NID on [10.52.150.164]...
+Connection to 10.52.150.164 22 port [tcp/ssh] succeeded!
+21-03-2016 08:17:17|INFO|20141|Applying default-db on NID
+21-03-2016 08:17:17|INFO|20141|Skipping default DB on the NID...
+21-03-2016 08:17:17|INFO|20141|Rebooting server...
+21-03-2016 08:17:17|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:17:17|INFO|20141|Templating cli_serverHardwareReset
+21-03-2016 08:17:17|INFO|20141|Found 3 parameters on cli_serverHardwareReset
+21-03-2016 08:17:18|INFO|20141|3 parameters has been changed successfully
+21-03-2016 08:17:26|INFO|20141|Waiting for NID startup...
+Connection to 10.52.150.164 22 port [tcp/ssh] succeeded!
+21-03-2016 08:17:26|INFO|20141|Test SSH connectivity for server...
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:30|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:34|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:38|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:42|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:46|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:50|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:54|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:17:58|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:02|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: No route to host
+21-03-2016 08:18:06|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:10|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:14|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:18|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: No route to host
+21-03-2016 08:18:22|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:26|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:30|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:34|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: No route to host
+21-03-2016 08:18:38|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:42|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:46|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:50|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:54|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:18:58|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:02|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:06|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:10|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:14|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:18|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:22|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:26|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:30|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:34|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:38|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:42|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:46|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:50|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:54|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:19:58|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:02|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:06|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:10|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:14|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:18|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:22|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) timed out: Operation now in progress
+21-03-2016 08:20:26|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: Connection refused
+21-03-2016 08:20:30|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+nc: connect to 10.52.150.164 port 9022 (tcp) failed: Connection refused
+21-03-2016 08:20:32|INFO|20141|waiting for server 10.52.150.164 to be accessible on port 9022
+Connection to 10.52.150.164 9022 port [tcp/*] succeeded!
+21-03-2016 08:20:32|INFO|20141|Starting NID configuration...
+21-03-2016 08:20:32|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:20:32|INFO|20141|Templating cli_nidConfiguration
+21-03-2016 08:20:32|INFO|20141|Found 9 parameters on cli_nidConfiguration
+21-03-2016 08:20:33|INFO|20141|9 parameters has been changed successfully
+21-03-2016 08:20:37|INFO|20141|NID Configuration completed.
+21-03-2016 08:20:37|INFO|20141|Checking of server is ready to accept configuration...
+Connection to 10.52.150.164 9022 port [tcp/*] succeeded!
+21-03-2016 08:20:37|INFO|20141|Server is ready!
+21-03-2016 08:20:37|INFO|20141|Starting Server interfaces configuration...
+21-03-2016 08:20:37|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:20:37|INFO|20141|Templating cli_serverNetworkInterfacesConfiguration
+21-03-2016 08:20:37|INFO|20141|Found 8 parameters on cli_serverNetworkInterfacesConfiguration
+21-03-2016 08:20:37|INFO|20141|8 parameters has been changed successfully
+21-03-2016 08:20:46|INFO|20141|Copying start scripts...
+21-03-2016 08:20:46|INFO|20141|Copying AOS and neutron start scripts to server...
+21-03-2016 08:20:47|INFO|20141|Done.
+21-03-2016 08:20:47|INFO|20141|Continue server configuration ....
+21-03-2016 08:20:47|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:20:47|INFO|20141|Templating cli_serverConfiguration
+21-03-2016 08:20:47|INFO|20141|Found 4 parameters on cli_serverConfiguration
+21-03-2016 08:20:47|INFO|20141|4 parameters has been changed successfully
+21-03-2016 08:21:25|INFO|20141|Server configuration completed.
+21-03-2016 08:21:25|INFO|20141|Creating physical networks...
+21-03-2016 08:21:25|INFO|20141|Creating PhysNets - AOS version 1.0 mode
+21-03-2016 08:21:26|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:21:26|INFO|20141|Templating nova.conf.template
+21-03-2016 08:21:26|INFO|20141|Found 21 parameters on nova.conf.template
+21-03-2016 08:21:26|INFO|20141|20 parameters has been changed successfully
+21-03-2016 08:21:26|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:21:26|INFO|20141|Templating neutron.conf.template
+21-03-2016 08:21:26|INFO|20141|Found 4 parameters on neutron.conf.template
+21-03-2016 08:21:27|INFO|20141|4 parameters has been changed successfully
+21-03-2016 08:21:27|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:21:27|INFO|20141|Templating ml2_conf.ini.template
+21-03-2016 08:21:27|INFO|20141|Found 0 parameters on ml2_conf.ini.template
+21-03-2016 08:21:27|INFO|20141|Nothing to change
+21-03-2016 08:21:27|INFO|20141|Copying templated configuration files to server...
+21-03-2016 08:21:28|INFO|20141|Done.
+21-03-2016 08:21:28|INFO|20141|Copying nova and neutron start scripts to server...
+21-03-2016 08:21:28|INFO|20141|Done.
+21-03-2016 08:21:28|INFO|20141|Done.
+21-03-2016 08:21:28|INFO|20141|Removing empty lines from config file [.config.ini] ...
+21-03-2016 08:21:28|INFO|20141|Templating cli_startAgents
+21-03-2016 08:21:28|INFO|20141|Found 3 parameters on cli_startAgents
+21-03-2016 08:21:28|INFO|20141|3 parameters has been changed successfully
+21-03-2016 08:21:32|INFO|20141|Clearing .expect files ...
+21-03-2016 08:21:32|INFO|20141|Script run-time = [255] sec
+21-03-2016 08:21:32|INFO|20141|*************************************
+21-03-2016 08:21:32|INFO|20141|              Finished!
+21-03-2016 08:21:32|INFO|20141|*************************************
