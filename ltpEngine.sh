@@ -219,24 +219,47 @@ case $aosVersion in
 1.0)
 	baseURI="https://${host}:${aosAppsPort}/aos-api"
 	header="Content-Type:application/json; ext=nn"
-	token=$(curl -k --silent -i -X POST -H "$header" -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "${baseURI}?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
-	until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H "$header" -H 'X-Auth-Token: $token'  ${baseURI}/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
+	while [[ "$token" == "" ]];do
+		token=$(curl -k --silent -i -X POST -H "$header" -d '{"in":{"pswd":"CHGME.1","un":"admin"}}' "${baseURI}?actn=lgin"| grep -o "X-Auth-Token:.*" | sed -e "s/X-Auth-Token:\s//g")
+	info "Waiting for Token..."
+	sleep 2
+	done
+#	until [[ $(curl -k -s -o /dev/null -w "%{http_code}" -X GET -H "$header" -H 'X-Auth-Token: $token'  ${baseURI}/mit/me/1/) == "401" ]]; do sleep 2; info 'Waiting for AOS Applications startup';done
 	;;
 esac
 
 
 
+nidNet1Header='{"id": "'${nidNet1}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,1/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}'
+nidNet2Header='{"id": "'${nidNet2}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,2/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}'
+nidAcc3Header='{"id": "'${nidAcc3}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}'
+nidAcc4Header='{"id": "'${nidAcc4}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}'
+nidAcc5Header='{"id": "'${nidAcc5}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,5/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}'
+nidAcc6Header='{"id": "'${nidAcc6}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,6/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}'
+phylocalHeader='{"id": "phy-local", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}'
+
+phyNetCounter=1
+for createHeader in nidNet1Header nidNet2Header nidAcc3Header nidAcc4Header nidAcc5Header nidAcc6Header phylocalHeader; do
+eval value=\$$createHeader
+httpReturnCode=$(curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d "$value" $baseURI/mit/me/1/vpnet/${phyNetCounter})
+if [[ "$httpReturnCode" != "200" ]]; then
+	info "Error creating physical network $createHeader, error code: [$httpReturnCode]"
+	exit 1
+fi
+(( phyNetCounter++ ))
+info "Successfully created physical network $createHeader"
+done
 
 
 
 
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidNet1}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,1/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/1
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidNet2}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,2/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/2
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc3}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/3
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc4}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/4
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc5}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,5/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/5
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc6}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,6/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/6
-curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "phy-local", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/7
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidNet1}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,1/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/1
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidNet2}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,2/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/2
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc3}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,3/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/3
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc4}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,4/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/4
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc5}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,5/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/5
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "'${nidAcc6}'", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,6/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/6
+#curl -k -s -o /dev/null -w "%{http_code}"  -X POST -H "$header" -H "X-Auth-Token: $token" -d '{"id": "phy-local", "typ":"vlan", "afpp":"/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=nw,7/ctp=1/ctppool=1/fppool", "zfpp": "/me=1/eqh=shelf,1/eqh=slot,1/eq=card/ptp=cl,8/ctp=1/ctppool=1/fppool"}' $baseURI/mit/me/1/vpnet/7
 
 }
 
@@ -361,12 +384,14 @@ info "Applying default-db on NID"
 if [[ "$skipDefaultDB" == "true" ]]; then
 	 info "Skipping default DB on the NID..."
 	 info "Rebooting server..."
-	 templateAndRun cli_serverHardwareReset
+ 
+	templateAndRun cli_serverHardwareReset
 else 
 	templateAndRun cli_defaultDB
 fi
 info "Waiting for NID startup..."
 waitForNID
+templateAndRun cli_disableReset
 #info "Seding Hardware reboot for server"
 #templateAndRun cli_serverHardwareReset
 info "Test SSH connectivity for server..."
@@ -383,7 +408,16 @@ templateAndRun cli_serverNetworkInterfacesConfiguration
 info "Copying start scripts..."
 copyAosStartScripts
 info "Continue server configuration ...."
+
+####################################
+#Disable Start.Sh
+
+if [[ "$aosVersion" == "0.8" ]];then
 templateAndRun cli_serverConfiguration
+
+fi
+
+
 info "Server configuration completed."
 #info "waiting for AOS Application startup..."
 #waitForAosApps
