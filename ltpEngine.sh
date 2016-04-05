@@ -412,10 +412,10 @@ info "Continue server configuration ...."
 ####################################
 #Disable Start.Sh
 
-if [[ "$aosVersion" == "0.8" ]];then
+#if [[ "$aosVersion" == "0.8" ]];then
 templateAndRun cli_serverConfiguration
 
-fi
+#fi
 
 
 info "Server configuration completed."
