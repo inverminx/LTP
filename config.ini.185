@@ -1,0 +1,22 @@
+{{isVerbose}} True
+{{isDebug}} True
+{{provmNumber}} 185
+{{host}} 10.52.150.185
+{{serverPort}} 9022
+{{aosAppsPort}} 8888
+{{nidUser}} "root"
+{{serverUser}} "root"
+{{nidPassword}} "ChgMeNOW"
+{{serverPassword}}
+{{vimTunnelPort}} "network-1-1-1-1"
+{{vimTunnelCIR}} 500000000
+{{vimTunnelEIR}} 0
+{{cpuCoreSetting}} 4-7
+{{instancesPath}} "/mnt/vm_snapshot"
+{{physicalNet1Network}} nid-net1
+{{physicalAcc3Network}} nid-acc3
+{{physicalNet2Network}} nid-net2
+{{physicalAcc4Network}} nid-acc4
+{{physicalAcc5Network}} nid-acc5
+{{physicalAcc6Network}} nid-acc6
+{{aosVersion}} 1.0
