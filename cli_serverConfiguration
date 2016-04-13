@@ -10,8 +10,8 @@ send "cd /opt/adva/aos/\r"
 expect "root@"
 #send ">/var/tmp/aosAppsStartup.log;./start.sh |tee /var/tmp/aosAppsStartup.log 2>&1\r"
 sleep 10
-send "./start.sh\r"
-expect "NfvFlowManager\:\:ready"
-sleep 3
+send "./start.sh;sleep 20\r"
+#expect "{{serverReadyString}}"
+sleep 5
 send "logout\r"
 expect "closed."
