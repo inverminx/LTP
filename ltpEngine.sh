@@ -370,6 +370,10 @@ key=physicalAcc4Network;nidAcc4=$(getAttr physicalAcc4Network);if [ $? -ne 0 ]; 
 key=physicalAcc5Network;nidAcc5=$(getAttr physicalAcc5Network);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=physicalAcc6Network;nidAcc6=$(getAttr physicalAcc6Network);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=ntpServer;ntpServer=$(getAttr ntpServer);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
+key=provmNumber;provmNumber=$(getAttr provmNumber);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
+key=mgmtNetworkCIDR;mgmtNetworkCIDR=$(getAttr mgmtNetworkCIDR);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
+
+echo "{{mgmtNetworkAddress}} $mgmtNetworkCIDR.$provmNumber" >> $configFile
 
 info "Starting Low Touch Provisioning for proNID(vm)"
 isExpectExists
