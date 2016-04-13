@@ -20,3 +20,4 @@
 {{physicalAcc5Network}} nid-acc5
 {{physicalAcc6Network}} nid-acc6
 {{aosVersion}} 0.8
+{{serverReadyString}} "NfvFlowManager\:\:ready"
