@@ -1,12 +1,9 @@
 #!/bin/bash
-startTime=$(date +%s)
-supportedAosVersions="0.8 0.9 1.0"
 
 function createTempConfigFile {
 
 cat $configFile > .config.ini
 cat $controllerConfigFile >> .config.ini
-
 }
 
 
@@ -17,6 +14,7 @@ function usage {
 		echo -e ""
 		echo -e "$greenColor      --controller $whiteColor      Openstack Controller configuration file"
 		echo -e "$greenColor      --config    $whiteColor       proNID(VM) configuration file"
+		echo -e "$greenColor      --help      $whiteColor       This help screen"
 		echo -e "$greenColor      --no-color  $whiteColor       (optional) disable color support"
 		echo -e "$greenColor      --skip-default-db $whiteColor (optional) Will skip NID Default db and reboot of NID"
 	}
@@ -317,47 +315,7 @@ scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P $serverPo
 info "Done."
 }
 
-
-####################################################################################################################
-													#### MAIN ####
-####################################################################################################################
-
-scriptName="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-colorSupport=$(tput colors)
-
-OPTS=$(getopt -o axby -l controller:,config:,no-color,skip-default-db -- "$@")
-
-if [ $? != 0 ]
-then
-	echo "Syntax Error"
-	exit 1
-fi
-
-#####
-
-
-eval set -- "$OPTS"
-while true ; do
-    case "$1" in
-        --controller) controllerConfigFile=$2; shift 2;;
-		--config) configFile=$2; shift 2;;
-        --no-color) colorMode=false; shift 1;;
-		--skip-default-db) skipDefaultDB=true; shift 1;;
-		
- --) shift; break;;
-    esac
-done
-
-isColorSupport
-checkMandatory
-isFileExists $controllerConfigFile
-isFileExists $configFile
-createTempConfigFile
-configFile=.config.ini
-logFile="ltp.log"
-
-## Extracting keys from from configuration file ##
-
+function getKeys {
 key=aosVersion;aosVersion=$(getAttr $key);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=host;host=$(getAttr $key);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=ntpServer;ntpServer=$(getAttr $key);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
@@ -373,6 +331,134 @@ key=physicalAcc6Network;nidAcc6=$(getAttr physicalAcc6Network);if [ $? -ne 0 ]; 
 key=ntpServer;ntpServer=$(getAttr ntpServer);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=provmNumber;provmNumber=$(getAttr provmNumber);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
 key=mgmtNetworkCIDR;mgmtNetworkCIDR=$(getAttr mgmtNetworkCIDR);if [ $? -ne 0 ]; then info "Error extracting key {{$key}} from configuration file $configFile - Quitting !!";exit 1;fi
+
+}
+
+function selector {
+
+i=0
+list=$1
+for line in $1; do
+ (( i++ ))
+
+ colorGreen "[$i] $line"
+done
+colorBold ""
+read -p "    Select <1-$i> " selection
+if [[ ! $selection =~ ^-?[0-9]+$ ]] || [ "$selection" -gt "$i" ] || [ "$selection" -lt "1" ];then
+	colorRed "Invalid Selection"
+	colorReset
+	selector "$1"
+fi
+selectorResult=$(echo $list|awk {'print $"'"$selection"'"'})	
+echo
+
+}
+function colorBold {
+echo -e "\e[1m${1}"
+}
+function colorReset {
+echo -e "\e[39m\e[0m${1}"
+}
+function colorGreen {
+echo -e "\e[92m${1}"
+}
+function colorRed {
+echo -e "\e[31m${1}"
+}
+
+function isNovaOnline {
+echo $(nova availability-zone-list |grep ProVM -A1|grep ":-)" -B1|grep -v ":-)"|sed s/\|//g|sed "s/ //g"|grep -v "\-\-"|sed "s/^\-//g")|grep "$1" >/dev/null 2>&1 && colorGreen Online || colorRed "Offline"
+}
+
+function isNeutronOnline {
+echo $(neutron agent-list|grep ":-)"|grep ProVM|awk {'print $7'}|grep $1 >/dev/null 2>&1 && colorGreen Online || colorRed "Offline")
+}
+
+function menu {
+
+configList="$(find . -not -path '*/\.*' -type f -print0 | xargs -0 grep -l "provmNumber"|grep config.ini|cut -c 3-|sort)"
+controllerList="$(find . -not -path '*/\.*' -type f -print0 | xargs -0 grep -l "vimVlan"|grep controller|cut -c 3-|sort)"
+
+colorBold " Adva Optical - proNID(VM) Low touch provisioning"
+
+colorRed "=================================================="
+colorReset  "\nSelect proNID(VM) configuration file:\n"
+selector "$configList"
+configFile=$selectorResult
+provmName="ProVM-$(grep provmNumber $selectorResult|awk {'print $2'})"
+colorReset "Current nova agent sync status on $provmName is $(isNovaOnline $provmName)"
+colorReset "Current neutron agent sync status on $provmName is $(isNeutronOnline $provmName)"
+colorReset  "\nSelect OpenStack controller configuration file:\n"
+
+selector "$controllerList"
+selectedController=$selectorResult
+colorReset  "\nDo you want to skip default-db and NID reboot ?\n"
+selector "YES NO"
+if [[ "$selectorResult" == "YES" ]];then skipDefaultDB=true;fi
+
+}
+
+
+
+
+####################################################################################################################
+													#### MAIN ####
+####################################################################################################################
+
+
+startTime=$(date +%s)
+supportedAosVersions="0.8 0.9 1.0"
+scriptName="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
+colorSupport=$(tput colors)
+
+if [[ "$#" != "0" ]];then  
+	OPTS=$(getopt -o axby -l controller:,config:,help,no-color,skip-default-db -- "$@")
+
+	if [ $? != 0 ]
+	then
+		echo "Syntax Error"
+		exit 1
+	fi
+
+#####
+
+
+	eval set -- "$OPTS"
+	while true ; do
+		case "$1" in
+			--controller) controllerConfigFile=$2; shift 2;;
+			--config) configFile=$2; shift 2;;
+			--help) usage;exit 0; shift 1;;
+			--no-color) colorMode=false; shift 1;;
+			--skip-default-db) skipDefaultDB=true; shift 1;;
+		
+	--) shift; break;;
+		esac
+	done
+	isColorSupport
+	checkMandatory
+else
+	menu
+	
+	if [[ "$skipDefaultDB" == "true" ]];then 
+		./$0 --controller $selectedController --config $configFile --skip-default-db
+	else 
+		./$0 --controller $selectedController --config $configFile
+	fi
+exit
+fi
+
+
+isFileExists $controllerConfigFile
+isFileExists $configFile
+createTempConfigFile
+configFile=.config.ini
+logFile="ltp.log"
+
+## Extracting keys from from configuration file ##
+
+getKeys
 
 echo "{{mgmtNetworkAddress}} $mgmtNetworkCIDR.$provmNumber" >> $configFile
 
