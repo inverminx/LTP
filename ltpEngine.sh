@@ -440,7 +440,7 @@ if [[ "$#" != "0" ]];then
 	checkMandatory
 else
 	menu
-	
+	colorReset ""
 	if [[ "$skipDefaultDB" == "true" ]];then 
 		./$0 --controller $selectedController --config $configFile --skip-default-db
 	else 
